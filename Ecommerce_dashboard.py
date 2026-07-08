@@ -18,7 +18,7 @@ import seaborn as sns
 import streamlit as st
 
 # ---------------------------------------------------------
-# Page Config (sabse pehle call karna zaroori hai)
+# Page Config (First calling page config)
 # ---------------------------------------------------------
 st.set_page_config(
     page_title="Ecommerce Sales Dashboard",
@@ -29,9 +29,9 @@ st.set_page_config(
 sns.set_style("whitegrid")
 
 # ---------------------------------------------------------
-# Data Load + Clean (cached, taaki baar baar reload na ho)
+# Data Load + Clean (Load Dataset)
 # ---------------------------------------------------------
-DATA_PATH = "E:/BBDU/Data/data.csv"   # <-- apna path yaha daalo
+DATA_PATH = "E:/BBDU/Data/data.csv"   
 
 
 @st.cache_data
@@ -63,7 +63,7 @@ def load_data(path):
 df_clean = load_data(DATA_PATH)
 
 # ---------------------------------------------------------
-# Sidebar Filters (interactivity yaha se aati hai)
+# Sidebar Filters 
 # ---------------------------------------------------------
 st.sidebar.header("🔍 Filters")
 
