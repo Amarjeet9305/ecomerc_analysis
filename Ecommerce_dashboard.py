@@ -18,7 +18,7 @@ sns.set_style("whitegrid")
 # ---------------------------------------------------------
 # Data Load + Clean (Load Dataset)
 # ---------------------------------------------------------
-DATA_PATH = "E:/BBDU/Data/data.csv"   
+DATA_PATH = "data.csv"   
 
 
 @st.cache_data
