@@ -1,16 +1,3 @@
-"""
-STEP 13: Interactive Dashboard (Streamlit)
-
-RUN KARNE KA TARIKA:
-    1. Is file ko save karo -> ecommerce_dashboard.py
-    2. Terminal mein jaake iski location par jao (cd command se)
-    3. Command chalao:
-         streamlit run ecommerce_dashboard.py
-    4. Browser automatically khul jayega -> http://localhost:8501
-
-NOTE: Apne data.csv ka sahi path niche DATA_PATH variable mein daalna.
-"""
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -65,11 +52,11 @@ df_clean = load_data(DATA_PATH)
 # ---------------------------------------------------------
 # Sidebar Filters 
 # ---------------------------------------------------------
-st.sidebar.header("🔍 Filters")
+st.sidebar.header("Filters")
 
 countries = sorted(df_clean["Country"].unique().tolist())
 selected_countries = st.sidebar.multiselect(
-    "Country chuno", options=countries, default=countries
+    "Country Option", options=countries, default=countries
 )
 
 min_date = df_clean["InvoiceDate"].min().date()
@@ -91,7 +78,7 @@ filtered = df_clean[mask]
 # ---------------------------------------------------------
 # Title
 # ---------------------------------------------------------
-st.title("🛒 Ecommerce Sales Dashboard")
+st.title("Ecommerce Sales Dashboard")
 st.markdown("Interactive view of revenue, products, customers aur trends.")
 
 # ---------------------------------------------------------
@@ -116,7 +103,7 @@ st.markdown("---")
 row1_col1, row1_col2 = st.columns(2)
 
 with row1_col1:
-    st.subheader("📈 Monthly Revenue Trend")
+    st.subheader("Monthly Revenue Trend")
     monthly_sales = filtered.groupby("YearMonth")["TotalPrice"].sum()
     fig, ax = plt.subplots(figsize=(6, 4))
     monthly_sales.plot(kind="line", marker="o", color="royalblue", ax=ax)
@@ -126,7 +113,7 @@ with row1_col1:
     st.pyplot(fig)
 
 with row1_col2:
-    st.subheader("🌍 Top 10 Countries by Revenue")
+    st.subheader("Top 10 Countries by Revenue")
     country_revenue = (
         filtered.groupby("Country")["TotalPrice"].sum()
         .sort_values(ascending=False).head(10)
@@ -143,7 +130,7 @@ with row1_col2:
 row2_col1, row2_col2 = st.columns(2)
 
 with row2_col1:
-    st.subheader("📦 Top 10 Products by Revenue")
+    st.subheader("Top 10 Products by Revenue")
     top_products = (
         filtered.groupby("Description")["TotalPrice"].sum()
         .sort_values(ascending=False).head(10)
@@ -207,6 +194,6 @@ st.dataframe(customer_summary, use_container_width=True)
 # ---------------------------------------------------------
 # Raw Data (optional expandable section)
 # ---------------------------------------------------------
-with st.expander("🔎 Raw Filtered Data Dekho"):
+with st.expander("Raw Filtered Data Insight"):
     st.dataframe(filtered.head(500), use_container_width=True)
 
